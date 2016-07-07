@@ -30,9 +30,7 @@ function auto_nodetitle_form_node_form_alter(&$form, FormStateInterface $form_st
     $widget['value']['#required'] = FALSE;
   }
 
-  // For this to work it needs to be after the preview callback and before the
-  // submit callback.
-  array_splice($form['actions']['preview']['#submit'], 1, 0, 'auto_nodetitle_form_node_form_submit_preview');
+  array_unshift($form['actions']['preview']['#submit'], 'auto_nodetitle_form_node_form_submit_preview');
 }
 
 /**
