@@ -72,7 +72,7 @@ class AutoTitle implements AutoTitleInterface {
   /**
    * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityTypeManager
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityTypeManager;
 
@@ -95,12 +95,12 @@ class AutoTitle implements AutoTitleInterface {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   Configuration factory.
-   * @param \Drupal\Core\Entity\EntityTypeManager $entity_type_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   Entity type manager
    * @param \Drupal\Core\Utility\Token $token
    *   Token manager.
    */
-  public function __construct(ContentEntityInterface $entity, ConfigFactoryInterface $config_factory, \Drupal\Core\Entity\EntityTypeManager $entity_type_manager, Token $token) {
+  public function __construct(ContentEntityInterface $entity, ConfigFactoryInterface $config_factory, \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager, Token $token) {
     $this->entity = $entity;
     $this->entity_type = $entity->getEntityType()->id();
     $this->entity_bundle = $entity->bundle();
