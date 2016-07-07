@@ -1,0 +1,15 @@
+{
+  "name": "drupal/auto_nodetitle",
+  "description": "Provides auto node title functionality",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  "keywords": ["php", drupal"],
+  "homepage": "https://github.com/BramG/auto_nodetitle",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Bram Goffings",
+      "role": "Maintainer"
+    }
+  ]
+}
