@@ -3,7 +3,7 @@
   "description": "Provides auto node title functionality",
   "type": "drupal-module",
   "license": "GPL-2.0+",
-  "keywords": ["php", drupal"],
+  "keywords": ["php", "drupal"],
   "homepage": "https://github.com/BramG/auto_nodetitle",
   "minimum-stability": "dev",
   "authors": [
