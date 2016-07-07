@@ -11,5 +11,8 @@
       "name": "Bram Goffings",
       "role": "Maintainer"
     }
-  ]
+  ],
+  "require": {
+      "composer/installers": "~1.0"
+  }
 }
