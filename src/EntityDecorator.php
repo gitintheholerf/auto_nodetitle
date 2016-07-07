@@ -56,12 +56,12 @@ class EntityDecorator implements EntityDecoratorInterface {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   Configuration factory.
-   * @param \Drupal\Core\Entity\EntityTypeManager $entity_type_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   Entity type manager
    * @param \Drupal\Core\Utility\Token $token
    *   Token manager.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, \Drupal\Core\Entity\EntityTypeManager $entity_type_manager, Token $token) {
+  public function __construct(ConfigFactoryInterface $config_factory, \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager, Token $token) {
     $this->configFactory = $config_factory;
     $this->entityTypeManager = $entity_type_manager;
     $this->token = $token;
