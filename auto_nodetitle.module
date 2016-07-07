@@ -24,6 +24,9 @@ function auto_nodetitle_form_node_form_alter(&$form, FormStateInterface $form_st
     // meanwhile.
     $widget['value']['#type'] = 'hidden';
     $widget['value']['#required'] = FALSE;
+    if (empty($widget['value']['#default_value'])) {
+      $widget['value']['#default_value'] = 'TO_GENERATE';
+    }
   }
   elseif ($decorated_node->hasOptionalAutoTitle()) {
     $widget = &$form['title']['widget'][0];
