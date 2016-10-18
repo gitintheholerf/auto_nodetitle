@@ -5,10 +5,18 @@
  * Allows hiding of the node title field and automatic title creation.
  */
 
+/*
+ * Note:
+ *  status = 0: Disabled
+ *  status = 1: Automatically generate title and hide field.
+ *  status = 2: Automatically generate title if title field is left empty.
+ */
+
 use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\NodeTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_form_FORM_ID_alter() for the node form.
@@ -92,7 +100,7 @@ function auto_nodetitle_form_node_type_form_alter(&$form, FormStateInterface $fo
   $form['auto_nodetitle']['pattern'] = array(
     '#type' => 'textarea',
     '#title' => t('Pattern for the title'),
-    '#description' => t('Leave blank for using the per default generated title. Otherwise this string will be used as title. Use the syntax [token] if you want to insert a replacement pattern.'),
+    '#description' => t('Leave blank to use the default generated title. Otherwise this string will be used as the title. Use the syntax [token] if you want to insert a replacement pattern.'),
     '#default_value' => \Drupal::config('auto_nodetitle.node.' . $type)
       ->get('pattern') ?: '',
   );
@@ -103,7 +111,7 @@ function auto_nodetitle_form_node_type_form_alter(&$form, FormStateInterface $fo
       ->hasPermission('use PHP for title patterns')
   ) {
     $form['auto_nodetitle']['ant_pattern']['#disabled'] = TRUE;
-    $form['auto_nodetitle']['ant_pattern']['#description'] = t('You are not allow the configure the pattern for the title, as you lack the %permission permission.', array('%permission' => t('Use PHP for title patterns')));
+    $form['auto_nodetitle']['ant_pattern']['#description'] = t('You are not allowed to configure the pattern for the title, as you lack the %permission permission.', array('%permission' => t('Use PHP for title patterns')));
   }
 
   // Display the list of available placeholders if token module is installed.
@@ -119,7 +127,7 @@ function auto_nodetitle_form_node_type_form_alter(&$form, FormStateInterface $fo
       ->hasPermission('use PHP for title patterns'),
     '#type' => 'checkbox',
     '#title' => t('Evaluate PHP in pattern.'),
-    '#description' => t('Put PHP code above that returns your string, but make sure you surround code in &lt;?php and ?&gt;. Note that $node is available and can be used by your code.'),
+    '#description' => t('Put PHP code above that returns your string, but make sure you surround code in &lt;?php and ?&gt;. Note that $node is available and can be used by your code (e.g., $node->field_name->value).'),
     '#default_value' => \Drupal::config('auto_nodetitle.node.' . $type)
       ->get('php') ?: '',
   );

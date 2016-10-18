@@ -216,7 +216,6 @@ class AutoTitle implements AutoTitleInterface {
         ->getDefinition($entity_type)
         ->getLabel();
     }
-
     return $label;
   }
 
@@ -273,12 +272,16 @@ class AutoTitle implements AutoTitleInterface {
    *   Translated title string.
    */
   protected function getAlternativeTitle() {
+    $entity_id = $this->entity->id();
     $content_type = $this->getBundleLabel();
 
-    if ($this->entity->id()) {
+    // Adjust automatic type title to be: entityname-entityid-timestamp
+    $content_type .= '-' . (($entity_id) ? $entity_id : 0) . '-' . time();
+
+    if ($entity_id) {
       $title = $this->t('@type @id', array(
         '@type' => $content_type,
-        '@id' => $this->entity->id(),
+        '@id' => $entity_id,
       ));
     }
     else {
